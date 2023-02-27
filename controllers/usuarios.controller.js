@@ -74,10 +74,10 @@ const usuariosPatch=(req, res=response) => {
 const usuariosDelete=async(req, res=response) => {
     const {id}=req.params;
 
-
     // Fisicamente lo borramos
     // const usuario =await Usuario.findByIdAndDelete(id); //no recomendado debido ah que se elimina el contacto completo y no se puede recuperar información de modificaciones o aporte sque alla hecho este 
     const usuario = await Usuario.findByIdAndUpdate(id,{estado:false});
+    const usuarioAutenticado = req.usuario;
 
 
 
@@ -86,7 +86,7 @@ const usuariosDelete=async(req, res=response) => {
     res.json({
         // ok:true,
         //msg:'delete API  - controlador'
-        usuario
+        usuario,usuarioAutenticado
     });
 }
 
